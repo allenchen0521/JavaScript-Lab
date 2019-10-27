@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Check</title>
+    <style>
+        fieldset {
+            width: 500px;
+            border: 1px solid red;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .cell1 {
+            width: 100%;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cell1 .t1 {
+            width: 100px;
+            float: left;
+            text-align: right;
+        }
+
+        .cell1 span {
+            font-size: 14px;
+        }
+
+        .t2 {
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        function checkUserName() {
+            let idName = document.getElementById("idName").value;
+            let idNameLength = idName.length;
+            let flag1 = false;
+
+            if (idName == "") {
+                document.getElementById("namesp").innerHTML = "<img src='images/error.png'>不可空白";
+            } else if (idNameLength >= 2) {
+                for (let i = 0; i < idNameLength; i++) {
+                    idNameChar = idName.charCodeAt(i);
+                    if (idNameChar >= 0x4E00 && idNameChar <= 0x9FFF) {
+                        flag1 = true;
+                    } else {
+                        flag1 = false;
+                        break;
+                    }
+                }
+                if (flag1) document.getElementById("namesp").innerHTML = "<img src='images/correct.png'>姓名格式正確";
+                else document.getElementById("namesp").innerHTML = "<img src='images/error.png'>姓名格式不正確";
+            } else {
+                document.getElementById("namesp").innerHTML = "<img src='images/error.png'>姓名至少兩個字元";
+            }
+        }
+
+        function checkPwd() {
+            idPwd = document.getElementById("idPwd").value;
+            idPwdLength = idPwd.length;
+            let symbol = ['!', '@', '#', '$', '%', '^', '&', '*'];
+            let flag1 = false, flag2 = false, flag3 = false;
+
+            if (idPwd == "") {
+                document.getElementById("pwdsp").innerHTML = "<img src='images/error.png'>密碼不可為空白";
+            } else if (idPwdLength >= 6) {
+                for (let i = 0; i < idPwdLength; i++) {
+                    let idPwdChar = idPwd.charAt(i).toUpperCase();
+                    if (idPwdChar >= 'A' && idPwdChar <= 'Z') {
+                        flag1 = true;
+                    } else if (idPwdChar >= 0 && idPwdChar <= 9) {
+                        flag2 = true;
+                    } else {
+                        // 特殊符號檢查
+                        for (let j = 0; j < symbol.length; j++) {
+                            if (idPwdChar.indexOf(symbol[j]) != -1) {
+                                flag3 = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (flag1 && flag2 && flag3) break;
+                }
+                if (flag1 && flag2 && flag3) {
+                    document.getElementById("pwdsp").innerHTML = "<img src='images/error.png'>密碼格式正確";
+                }
+                else {
+                    document.getElementById("pwdsp").innerHTML = "<img src='images/error.png'>密碼格式不正確";
+                }
+            } else {
+                document.getElementById("pwdsp").innerHTML = "<img src='images/error.png'>密碼至少6個字元";
+            }
+        }
+        function checkDateFormat() {
+            let idDate = document.getElementById("idDate").value;
+            let dataNormal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            let dataSpecial = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            let flag1 = false, flag2 = false;
+
+            // 檢查 date 預期的格式
+            let regex = /^\d{1,4}\/\d{1,2}\/\d{1,2}$/;
+            if (regex.test(idDate)) { flag1 = true; alert("驗證格式")}
+
+            // 切割字串 year/month/date
+            idDateArr = idDate.split("/");
+            year = idDateArr[0];
+            month = idDateArr[1] - 1;
+            date = idDateArr[2];
+
+            if (month >= 0 && month < 12) {
+                if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+                    if (date <= dataSpecial[month] && date >= 1) { flag2 = true; }
+                } else {
+                    if (date <= dataNormal[month] && date >= 1) { flag2 = true; }
+                }
+            }
+
+            if (flag1 && flag2) document.getElementById("datesp").innerHTML = "<img src='images/correct.png'>日期格式正確";
+            else if (flag1 == false) document.getElementById("datesp").innerHTML = "<img src='images/error.png'>預期格式錯誤, 格式: yyyy/mm/dd";
+            else if (flag2 == false) document.getElementById("datesp").innerHTML = "<img src='images/error.png'>日期格式錯誤";
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("idName").addEventListener("blur", checkUserName, false );
+            document.getElementById("idPwd").addEventListener("blur", checkPwd, false);
+            document.getElementById("idDate").addEventListener("blur", checkDateFormat, false);
+        });
+    </script>
+</head>
+
+
+<body>
+    <form action="#" method="GET" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Form Check</legend>
+            <div class="cell1">
+                <label for="idname" class="t1">姓名:</label>
+                <input id="idName" type="text" name="idname">
+                <span id="namesp"></span>
+            </div>
+            <div class="cell1">
+                <label for="idPwd" class="t1">密碼:</label>
+                <input id="idPwd" type="text" name="idPwd">
+                <span id="pwdsp"></span>
+            </div>
+            <div class="cell1">
+                <label for="idDate" class="t1">日期:</label>
+                <input id="idDate" type="text" name="idDate">
+                <span id="datesp" class="test"></span>
+            </div>
+            <div class="t2">
+                <!-- <input type="button" value="驗證姓名" onclick="checkUserName()">
+                <input type="button" value="驗證密碼" onclick="checkPwd()">
+                <input type="button" value="驗證日期" onclick="checkDateFormat()"> -->
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+</html>

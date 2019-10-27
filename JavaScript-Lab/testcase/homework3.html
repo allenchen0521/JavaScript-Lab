@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>評點製作</title>
+</head>
+<style>
+    #starScore {
+        font-family: 微軟正黑體;
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+</style>
+<script>
+    let imgArr = ["star1","star2","star3","star4","star5"];
+    let currentIndex = -1;
+    let clickCheck = false;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        for(let i=0;i<imgArr.length;i++) {
+            let starObj = document.getElementById(imgArr[i]);
+            starObj.index = i;
+            starObj.addEventListener("mouseover", scoreStar);
+            starObj.addEventListener("mouseout", clearStar);
+            starObj.addEventListener("click", clickStar);
+            starObj.addEventListener("dblclick", noneStar);
+        }
+    });
+
+    function scoreStar() {
+        let mouseIndex = this.index;
+        if(clickCheck == false) {
+            for(let i=0;i<=mouseIndex;i++) {
+                document.getElementById(imgArr[i]).src = "../img/chngstar.gif";
+                document.getElementById("starscore").innerHTML = `打分中...${i}`;
+            }
+        }
+    }
+
+    function clearStar() {
+        // alert(this.index);
+        let mouseIndex = this.index;
+        if(clickCheck == false) {
+            for(let i=0;i<=mouseIndex;i++) {
+                document.getElementById(imgArr[i]).src = "../img/star.gif";
+            }
+        }
+    }
+
+    function clickStar() {
+        clickCheck = true;
+        let mouseIndex = this.index;
+        if(clickCheck) {
+            for(let i=0;i<=mouseIndex;i++) {
+                document.getElementById(imgArr[i]).src = "../img/chngstar.gif";
+            }
+        }
+    }
+
+    function noneStar() {
+        let mouseIndex = this.index;
+        if(clickCheck) {
+            for(let i=0;i<=mouseIndex;i++) {
+                document.getElementById(imgArr[i]).src = "../img/star.gif";
+            }
+        }
+        clickCheck = false;
+    }
+</script>
+<body>
+    <img id="star1" src="../img/star.gif" alt="">
+    <img id="star2" src="../img/star.gif" alt="">
+    <img id="star3" src="../img/star.gif" alt="">
+    <img id="star4" src="../img/star.gif" alt="">
+    <img id="star5" src="../img/star.gif" alt="">
+    <p id="starscore"></p>
+</body>
+</html>
+

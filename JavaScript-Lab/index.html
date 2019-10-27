@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>JavaScript Design</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom1.css">
+
+    <!-- Custome JavaScript for this template -->
+    <script src="homeworkjs/homework2.js"></script>
+    <script src="homeworkjs/homework3.js"></script>
+    <script src="homeworkjs/homework4.js"></script>
+    <script src="homeworkjs/homework5.js"></script>
+</head>
+
+<body id="page-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Tae Bak</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#homework1">homework1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#homework2">homework2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#homework3">homework3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#homework4">homework4</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#homework5">homework5</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex" id="homework1">
+        <div class="w-100">
+            <h2>homework1</h2>
+            <div class="homework">
+                <div class="box">
+                    <p class="title">
+                        九九乘法表
+                        <span class="smalltext">homework1</span>
+                    </p>               
+                    <script>
+                        document.write("<table>");
+                        document.write("<tr>");
+                        for (let i = 2; i < 10; i++) {
+                            document.write("<td>");
+                            for (let j = 1; j < 10; j++) {
+                                document.write(`${i}*${j}=${i * j}<br>`);
+                            }
+                            document.write("</td>");
+                        }
+                        document.write("</tr>");
+                        document.write("</table>");
+                    </script>
+                    <div class="boxbutton">
+                            <a href="#" class="btn nav-link js-scroll-trigger btnleft">首頁</a>
+                            <a href="#homework2" class="btn nav-link js-scroll-trigger btnright">homework2</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="homework2">
+      <div class="w-100">
+        <h2>homework2</h2>
+        <div class="homework">
+            <div class="box">
+                <p class="title">
+                    Form Check
+                    <span class="smalltext">homework2</span>
+                </p>
+                <form action="#" method="GET" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="cell1">
+                            <label for="idname" class="t1">姓名:</label>
+                            <input id="idName" type="text" name="idname" placeholder="請輸入姓名">
+                            <span id="namesp"></span>
+                            <p class="smalltext">(1.不可空白，2.至少兩個字以上，3.必須全部為中文字)</p>
+                        </div>
+                        <div class="cell1">
+                            <label for="idPwd" class="t1">密碼:</label>
+                            <input id="idPwd" type="password" name="idPwd" placeholder="請輸入密碼">
+                            <span id="pwdsp"></span>
+                            <p class="smalltext">(1.不可空白,2.至少6個字必須包含英文字母、數字、特殊字元[!@#$%^&*])</p>
+                        </div>
+                        <div class="cell1">
+                            <label for="idDate" class="t1">日期:</label>
+                            <input id="idDate" type="text" name="idDate" placeholder="ex:2000/2/29">
+                            <span id="datesp" class="test"></span>
+                            <p class="smalltext">格式:西元年/月/日/yyyy/MM/dd</p>
+                        </div>
+                        <!-- <div class="t2">
+                            <input type="button" value="驗證姓名" onclick="checkUserName()">
+                            <input type="button" value="驗證密碼" onclick="checkPwd()">
+                            <input type="button" value="驗證日期" onclick="checkDateFormat()">
+                        </div> -->
+                        <div class="boxbutton">
+                            <a href="#homework1" class="btn nav-link js-scroll-trigger btnleft">homework1</a>
+                            <a href="#homework3" class="btn nav-link js-scroll-trigger btnright">homework3</a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="homework3">
+        <div class="w-100">
+            <h2>homework3</h2>
+            <div class="box">
+                <p class="title">
+                    評分製作
+                    <span class="smalltext">homework3</span>
+                </p>
+                <div class="starblock">
+                    <img id="star1" src="img/star.gif" alt="">
+                    <img id="star2" src="img/star.gif" alt="">
+                    <img id="star3" src="img/star.gif" alt="">
+                    <img id="star4" src="img/star.gif" alt="">
+                    <img id="star5" src="img/star.gif" alt="">
+                    <p id="starscore">打分中...0</p>
+                </div>
+                <div class="boxbutton">
+                        <a href="#homework2" class="btn nav-link js-scroll-trigger btnleft">homework2</a>
+                        <a href="#homework4" class="btn nav-link js-scroll-trigger btnright">homework4</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="homework4">
+        <div class="w-100">
+            <h2>homework4</h2>
+            <div class="homework">
+                <div class="box">
+                    <p class="title">
+                        廣告輪播
+                        <span class="smalltext">homework4</span>
+                    </p>
+                    <div id="adblock">
+                        <a href="https://www.apple.com/tw/mac/?afid=p238%7Cs0VDA70wE-dc_mtid_18707vxu38484_pcrid_211825841739_pgrid_12618493262_&cid=aos-tw-kwgo-mac--slid---mac-e-product-" target="_blank"><img id="ad1" style="opacity: 1; z-index: 9999" src="img/apple1.png" alt=""></a>
+                        <a href="https://www.apple.com/tw/mac/" target="_blank"><img id="ad2" style="opacity: 0" src="img/apple2.png" alt=""></a>
+                        <a href="https://www.apple.com/tw/macbook-pro/" target="_blank"><img id="ad3" style="opacity: 0" src="img/apple3.png" alt=""></a>
+                        <a href="https://www.apple.com/tw/macbook-air/" target="_blank"><img id="ad4" style="opacity: 0" src="img/apple4.png" alt=""></a>
+                        <a href="https://www.apple.com/tw/imac-pro/" target="_blank"><img id="ad5" style="opacity: 0" src="img/apple5.png" alt=""></a>
+                    </div>
+                    <div class="smalladblock">
+                        <img class="smallimg" src="img/apple1.png" alt="">
+                        <img class="smallimg" src="img/apple2.png" alt="">
+                        <img class="smallimg" src="img/apple3.png" alt="">
+                        <img class="smallimg" src="img/apple4.png" alt="">
+                        <img class="smallimg" src="img/apple5.png" alt="">
+                    </div>
+                    <div class="adbut">
+                        <img id="prebut" src="img/previous.png" alt="">
+                        <img id="stopbut" src="img/pause.png" alt="">
+                        <img id="nextbut" src="img/next.png" alt="">
+                    </div>
+                    <div class="boxbutton">
+                        <a href="#homework3" class="btn nav-link js-scroll-trigger btnleft">homework3</a>
+                        <a href="#homework5" class="btn nav-link js-scroll-trigger btnright">homework5</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="homework5">
+        <div class="w-100">
+            <h2>homework5</h2>
+            <div class="homework">
+                <div class="box">
+                    <p class="title">
+                        日曆
+                        <span class="smalltext">homework5</span>
+                    </p>
+                    <div id="calenderblock">
+                        <div class="choosefor">
+                            <select id="idSelectYear"></select><span>年</span>
+                            <select id="idSelectMonth"></select><span>月</span>
+                            <select id="idSelectDay"></select><span>日</span>
+                        </div>
+                        <div class="Infor">
+                            <div class="infortitle">Information</div>
+                            <div id="idInfor"></div>
+                        </div>
+                    </div>
+
+                    <div class="boxbutton">
+                            <a href="#homework4" class="btn nav-link js-scroll-trigger btnleft">homework4</a>
+                            <a href="#homework1" class="btn nav-link js-scroll-trigger btnright">homework1</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/resume.min.js"></script>
+
+</body>
+
+</html>

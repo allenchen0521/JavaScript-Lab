@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>廣告輪播</title>
+</head>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#adblock {
+    position: relative;
+    left: 0%;
+    top: 0%;
+    width: 30%;
+    height: 280px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#adblock img {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* 廣告輪播 button */
+.adbut {
+    width: 50%;
+    height: 50px;
+    margin: 10px auto;
+    text-align: center
+}
+
+.adbut img {
+    display: inline-block;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* 廣告輪播縮圖 */
+.smalladblock {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.smalladblock .smallimg {
+    float: left;
+    width: 20%;
+    height: 71px;
+    display: block;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.smalladblock .smallimg:nth-child(1) {
+    border: 5px solid hotpink;
+}
+
+</style>
+<script>
+// 宣告全區域變數
+let adObj = new Array();
+let smalladObj = new Array();
+let adStart = 0, max = 5;
+let adArr = ["ad1", "ad2", "ad3", "ad4", "ad5"];
+let checkStop = false;
+let carouselId;
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    for(let i=0;i<adArr.length;i++) {
+        adObj[i] = document.getElementById(adArr[i]);
+        adObj[i].index = i;
+    }
+    /* 廣告輪播 button binding */
+    document.getElementById("stopbut").addEventListener("click", mediaStop);
+    document.getElementById("nextbut").addEventListener("click", mediaNext);
+    document.getElementById("prebut").addEventListener("click", mediaPre);
+
+    /* 廣告輪播縮圖 binding */
+    smalladObj = document.querySelectorAll(".smallimg");
+    for(let i=0;i<smalladObj.length;i++) {
+        smalladObj[i].index = i;
+        smalladObj[i].addEventListener("mouseover", mediamouseover);
+    }
+});
+
+function mediaStop() {
+    if(checkStop != true) {
+        clearInterval(carouselId);
+        this.src = "../img/play.png";
+        checkStop = true;
+    } else {
+        carouselId = setInterval(carousel, 2000);
+        this.src = "../img/pause.png";
+        checkStop = false;
+    }
+}
+
+function mediaNext() {
+    smalladObj[adStart].style.border = "0px";
+    adObj[adStart].style.display = "none";
+    if((adStart+1) < max) {adStart++;} else { adStart = 0;}
+    console.log(`這是 Next ${adStart+1}`);
+    adObj[adStart].style.display = "block";
+    smalladObj[adStart].style.border = "5px solid hotpink";
+}
+
+function mediaPre() {
+    smalladObj[adStart].style.border = "0px";
+    adObj[adStart].style.display = "none";
+    if((adStart-1) >= 0) { adStart--;} else { adStart = (max-1);}
+    console.log(`這是 Pre ${adStart+1}`);
+    adObj[adStart].style.display = "block";
+    smalladObj[adStart].style.border = "5px solid hotpink";
+}
+
+function mediamouseover() {
+    smalladObj[adStart].style.border = "0px";
+    adObj[adStart].style.display = "none";
+    adStart = this.index;
+    console.log(`縮圖 ${adStart+1}`);
+    adObj[adStart].style.display = "block";
+    smalladObj[adStart].style.border = "5px solid hotpink";
+}
+
+function carousel() {
+    adObj[adStart].style.display = "none";
+    if((adStart+1) < max) {adStart++;} else { adStart = 0;}
+    console.log(adStart)
+    adObj[adStart].style.display = "block";
+
+    let last;
+    if((adStart-1) >= 0) last = adStart-1; else last = (max-1);
+    smalladObj[last].style.border = "0px";
+    smalladObj[adStart].style.border = "5px solid hotpink";
+}
+
+carouselId = setInterval( carousel, 2000);
+
+</script>
+
+<body>
+    <div id="adblock">
+        <a href="https://www.apple.com/tw/mac/?afid=p238%7Cs0VDA70wE-dc_mtid_18707vxu38484_pcrid_211825841739_pgrid_12618493262_&cid=aos-tw-kwgo-mac--slid---mac-e-product-" target="_blank"><img id="ad1" style="display: block" src="../img/apple1.png" alt=""></a>
+        <a href="https://www.apple.com/tw/mac/" target="_blank"><img id="ad2" style="display: none" src="../img/apple2.png" alt=""></a>
+        <a href="https://www.apple.com/tw/macbook-pro/" target="_blank"><img id="ad3" style="display: none" src="../img/apple3.png" alt=""></a>
+        <a href="https://www.apple.com/tw/macbook-air/" target="_blank"><img id="ad4" style="display: none" src="../img/apple4.png" alt=""></a>
+        <a href="https://www.apple.com/tw/imac-pro/" target="_blank"><img id="ad5" style="display: none" src="../img/apple5.png" alt=""></a>
+    </div>
+    <div class="smalladblock">
+        <img class="smallimg" src="../img/apple1.png" alt="">
+        <img class="smallimg" src="../img/apple2.png" alt="">
+        <img class="smallimg" src="../img/apple3.png" alt="">
+        <img class="smallimg" src="../img/apple4.png" alt="">
+        <img class="smallimg" src="../img/apple5.png" alt="">
+    </div>
+    <div class="adbut">
+        <img id="prebut" src="../img/previous.png" alt="">
+        <img id="stopbut" src="../img/pause.png" alt="">
+        <img id="nextbut" src="../img/next.png" alt="">
+    </div>
+</body>
+</html>
